@@ -1,0 +1,5 @@
+# Swap files for vi(m)
+*.swp
+
+# Mac finder files
+*.DS_Store
