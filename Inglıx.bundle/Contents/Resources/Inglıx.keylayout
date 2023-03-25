@@ -8,7 +8,7 @@
 
 -->
 <!--Last edited by Ukelele version 359 on 2023-03-24 at 11:23 (MDT)-->
-<keyboard group="126" id="-29093" name="Inglix" maxout="2">
+<keyboard group="126" id="-29111" name="Inglıx" maxout="2">
     <layouts>
         <layout first="0" last="17" mapSet="16c" modifiers="f4"/>
         <layout first="18" last="18" mapSet="984" modifiers="f4"/>
