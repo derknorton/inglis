@@ -1,6 +1,7 @@
 package main
 
 import (
+	fmt "fmt"
 	bal "github.com/bali-nebula/go-component-framework/v2/bali"
 	osx "os"
 	sts "strings"
@@ -52,15 +53,14 @@ func main() {
 		var word = bal.Quote(`"` + english[index:next] + `"`)
 		var translation = word
 		var value = dictionary.GetValue(word)
-		if value == nil {
-			var empty = bal.Component(bal.Quote(`""`))
-			dictionary.SetValue(word, empty)
-		} else {
+		if value != nil {
 			translation = value.ExtractQuote()
 			if translation.IsEmpty() {
+				fmt.Println("The dictionary is empty for:", word)
 				translation = word
-			} else {
 			}
+		} else {
+			fmt.Println("The dictionary is missing:", word)
 		}
 		builder.WriteString(translation.AsString())
 		index = next
@@ -69,12 +69,6 @@ func main() {
 
 	// Write out the Inglix text.
 	err = osx.WriteFile(osx.Args[2], []byte(inglix), 0644)
-	if err != nil {
-		panic(err)
-	}
-
-	// Write out the updated dictionary.
-	err = osx.WriteFile(dictionaryFile, bal.FormatDocument(bal.Component(dictionary)), 0644)
 	if err != nil {
 		panic(err)
 	}
