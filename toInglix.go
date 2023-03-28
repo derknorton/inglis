@@ -1,19 +1,19 @@
 package main
 
 import (
+	byt "bytes"
 	fmt "fmt"
 	bal "github.com/bali-nebula/go-component-framework/v2/bali"
 	osx "os"
-	sts "strings"
 	utf "unicode/utf8"
 )
 
-const alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+var alphabet = []byte("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 const dictionaryFile = "./dictionaries/English.bali"
 
 func notInAlphabet(r rune) bool {
-	return !sts.ContainsRune(alphabet, r)
+	return !byt.ContainsRune(alphabet, r)
 }
 
 func main() {
@@ -29,7 +29,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	var english = string(bytes)
+	var english = bytes
 
 	// Load in the dictionary.
 	bytes, err = osx.ReadFile(dictionaryFile)
@@ -38,21 +38,27 @@ func main() {
 	}
 	var dictionary = bal.ParseDocument(bytes).ExtractCatalog()
 
-	// Translate to Inglix text.
-	var builder sts.Builder
+	// Translate the English text.
+	var buffer byt.Buffer
 	var index = 0
 	var size = len(english)
 	for index < size {
-		var r, length = utf.DecodeRune([]byte(english[index:]))
+		// Find the next word.
+		var r, length = utf.DecodeRune(english[index:])
 		if notInAlphabet(r) {
-			builder.WriteRune(r)
+			// Append the non-letter rune to the Inglix text.
+			buffer.WriteRune(r)
 			index += length
 			continue
 		}
-		var next = index + sts.IndexFunc(english[index:], notInAlphabet)
-		var word = bal.Quote(`"` + english[index:next] + `"`)
+
+		// Extract the next word.
+		var next = index + byt.IndexFunc(english[index:], notInAlphabet)
+		var word = bal.Quote(`"` + string(english[index:next]) + `"`)
 		var translation = word
 		var value = dictionary.GetValue(word)
+
+		// Translate the next word.
 		if value != nil {
 			translation = value.ExtractQuote()
 			if translation.IsEmpty() {
@@ -62,13 +68,15 @@ func main() {
 		} else {
 			fmt.Println("The dictionary is missing:", word)
 		}
-		builder.WriteString(translation.AsString())
+
+		// Append the translated word to the Inglix text.
+		buffer.WriteString(translation.AsString())
 		index = next
 	}
-	var inglix = builder.String()
 
 	// Write out the Inglix text.
-	err = osx.WriteFile(osx.Args[2], []byte(inglix), 0644)
+	var inglix = buffer.Bytes()
+	err = osx.WriteFile(osx.Args[2], inglix, 0644)
 	if err != nil {
 		panic(err)
 	}
