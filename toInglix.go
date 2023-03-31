@@ -65,12 +65,20 @@ func main() {
 		if value != nil {
 			translation = value.ExtractQuote().AsString()
 		} else {
-			// Add a new word to the dictionary.
+			// Prompt for a new translation.
 			fmt.Printf("Enter translation for %s: ", word)
 			fmt.Scanln(&translation)
-			value = bal.Component(`"` + translation + `"`)
-			dictionary.SetValue(key, value)
+			if len(translation) > 0 {
+				// Add a new word to the dictionary.
+				value = bal.Component(`"` + sts.ToLower(translation) + `"`)
+				dictionary.SetValue(key, value)
+			} else {
+				// Keep the word untranslated.
+				translation = word
+			}
 		}
+
+		// Set the capitalization correctly.
 		if uni.IsUpper(r) {
 			translation = sts.Title(translation)
 		}
