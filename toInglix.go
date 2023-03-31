@@ -5,15 +5,17 @@ import (
 	fmt "fmt"
 	bal "github.com/bali-nebula/go-component-framework/v2/bali"
 	osx "os"
+	sts "strings"
+	uni "unicode"
 	utf "unicode/utf8"
 )
 
-var alphabet = []byte("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
+var alphabet = []byte("abcdefghijklmnopqrstuvwxyz")
 
 const dictionaryFile = "./dictionaries/English.bali"
 
 func notInAlphabet(r rune) bool {
-	return !byt.ContainsRune(alphabet, r)
+	return !byt.ContainsRune(alphabet, uni.ToLower(r))
 }
 
 func main() {
@@ -54,29 +56,41 @@ func main() {
 
 		// Extract the next word.
 		var next = index + byt.IndexFunc(english[index:], notInAlphabet)
-		var word = bal.Quote(`"` + string(english[index:next]) + `"`)
-		var translation = word
-		var value = dictionary.GetValue(word)
+		var word = string(english[index:next])
+		var key = bal.Quote(`"` + sts.ToLower(word) + `"`)
 
 		// Translate the next word.
+		var translation string
+		var value = dictionary.GetValue(key)
 		if value != nil {
-			translation = value.ExtractQuote()
-			if translation.IsEmpty() {
-				fmt.Println("The dictionary is empty for:", word)
-				translation = word
-			}
+			translation = value.ExtractQuote().AsString()
 		} else {
-			fmt.Println("The dictionary is missing:", word)
+			// Add a new word to the dictionary.
+			fmt.Printf("Enter translation for %s: ", word)
+			fmt.Scanln(&translation)
+			value = bal.Component(`"` + translation + `"`)
+			dictionary.SetValue(key, value)
+		}
+		if uni.IsUpper(r) {
+			translation = sts.Title(translation)
 		}
 
 		// Append the translated word to the Inglix text.
-		buffer.WriteString(translation.AsString())
+		buffer.WriteString(translation)
 		index = next
 	}
 
 	// Write out the Inglix text.
 	var inglix = buffer.Bytes()
 	err = osx.WriteFile(osx.Args[2], inglix, 0644)
+	if err != nil {
+		panic(err)
+	}
+
+	// Write out the updated dictionary.
+	dictionary.SortValues()
+	bytes = bal.FormatDocument(bal.Component(dictionary))
+	err = osx.WriteFile(dictionaryFile, bytes, 0644)
 	if err != nil {
 		panic(err)
 	}
