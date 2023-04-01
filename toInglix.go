@@ -10,13 +10,7 @@ import (
 	utf "unicode/utf8"
 )
 
-var alphabet = []byte("abcdefghijklmnopqrstuvwxyz")
-
-const filename = "./dictionaries/English.txt"
-
-func notInAlphabet(r rune) bool {
-	return !byt.ContainsRune(alphabet, uni.ToLower(r))
-}
+// MAIN PROGRAM
 
 func main() {
 	// Validate the commandline arguments.
@@ -91,8 +85,17 @@ func main() {
 }
 
 const (
-	EOL = "\n" // The POSIX end of line character.
+	EOL      = "\n" // The POSIX end of line character.
+	filename = "./dictionaries/English.txt"
 )
+
+var alphabet = []byte("abcdefghijklmnopqrstuvwxyz")
+
+func notInAlphabet(r rune) bool {
+	return !byt.ContainsRune(alphabet, uni.ToLower(r))
+}
+
+// DICTIONARY IMPLEMENTATION
 
 func Dictionary(file string) *dictionary {
 	var v = col.Catalog[string, string]()
@@ -101,10 +104,10 @@ func Dictionary(file string) *dictionary {
 		panic(err)
 	}
 	var lines = sts.Split(string(bytes), EOL)
-	lines = lines[1:len(lines)-2]  // Remove the brackets.
+	lines = lines[1 : len(lines)-2] // Remove the brackets.
 	for _, line := range lines {
 		var strings = sts.Split(line, `"`)
-		v.SetValue(strings[1], strings[3])  // ----"key", "value"
+		v.SetValue(strings[1], strings[3]) // ----"key": "value"
 	}
 	return &dictionary{v, file}
 }
