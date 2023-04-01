@@ -12,7 +12,7 @@ import (
 
 var alphabet = []byte("abcdefghijklmnopqrstuvwxyz")
 
-const dictionaryFile = "./dictionaries/English.bali"
+const filename = "./dictionaries/English.txt"
 
 func notInAlphabet(r rune) bool {
 	return !byt.ContainsRune(alphabet, uni.ToLower(r))
@@ -34,7 +34,7 @@ func main() {
 	var english = bytes
 
 	// Load in the dictionary.
-	var dictionary = Dictionary(dictionaryFile)
+	var dictionary = Dictionary(filename)
 
 	// Translate the English text.
 	var buffer byt.Buffer
