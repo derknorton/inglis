@@ -1,6 +1,7 @@
 package main
 
 import (
+	buf "bufio"
 	byt "bytes"
 	fmt "fmt"
 	col "github.com/craterdog/go-collection-framework/v2"
@@ -32,6 +33,7 @@ func main() {
 	var dictionary = Dictionary(filename)
 
 	// Translate the English text.
+	var scanner = buf.NewScanner(osx.Stdin)
 	var buffer byt.Buffer
 	var index = 0
 	var size = len(english)
@@ -54,7 +56,8 @@ func main() {
 		if learning && len(translation) == 0 {
 			// Prompt for a new translation.
 			fmt.Printf("Enter translation for %s: ", word)
-			fmt.Scanln(&translation)
+			scanner.Scan()
+			translation = scanner.Text()
 			if len(translation) > 0 {
 				// Add a new word to the dictionary.
 				dictionary.SetValue(sts.ToLower(word), sts.ToLower(translation))
