@@ -14,9 +14,10 @@ import (
 
 func main() {
 	// Validate the commandline arguments.
-	if len(osx.Args) != 3 {
-		panic("toInglix <english file> <inglix file>")
+	if len(osx.Args) < 3 {
+		panic("toInglix <english file> <inglix file> [learn]")
 	}
+	var learning = len(osx.Args) > 3
 
 	// Read in the English text.
 	var bytes []byte
@@ -50,20 +51,19 @@ func main() {
 
 		// Translate the next word.
 		var translation = dictionary.GetValue(sts.ToLower(word))
-		if len(translation) == 0 {
+		if learning && len(translation) == 0 {
 			// Prompt for a new translation.
 			fmt.Printf("Enter translation for %s: ", word)
 			fmt.Scanln(&translation)
 			if len(translation) > 0 {
 				// Add a new word to the dictionary.
 				dictionary.SetValue(sts.ToLower(word), sts.ToLower(translation))
-			} else {
-				// Keep the word untranslated.
-				translation = word
 			}
 		}
-
-		// Set the capitalization correctly.
+		if len(translation) == 0 {
+			// Keep the word untranslated.
+			translation = word
+		}
 		if uni.IsUpper(r) {
 			translation = sts.Title(translation)
 		}
@@ -80,8 +80,10 @@ func main() {
 		panic(err)
 	}
 
-	// Write out the updated dictionary.
-	dictionary.Save()
+	// Write out the updated dictionary (if necessary).
+	if learning {
+		dictionary.Save()
+	}
 }
 
 const (
@@ -89,7 +91,7 @@ const (
 	filename = "./dictionaries/English.txt"
 )
 
-var alphabet = []byte("abcdefghijklmnopqrstuvwxyz")
+var alphabet = []byte("abcdefghijklmnopqrstuvwxyz'")
 
 func notInAlphabet(r rune) bool {
 	return !byt.ContainsRune(alphabet, uni.ToLower(r))
