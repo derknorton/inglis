@@ -1,5 +1,3 @@
-github.com/bali-nebula/go-component-framework/v2 v2.0.0 h1:Q6lHHJ1FsAP9+UhkalJaT16tm7cecvo5dfCJ1VaE+ZE=
-github.com/bali-nebula/go-component-framework/v2 v2.0.0/go.mod h1:63enweUvRxCtP1yHMBTLYYlJcK1y87ON6xEeuEPJnaU=
 github.com/craterdog/go-collection-framework/v2 v2.1.0 h1:nM3UNuG6yzyHbowDJJygCtgKzhfsDVhYrBhxhAb1aS8=
 github.com/craterdog/go-collection-framework/v2 v2.1.0/go.mod h1:wxIt5gj0R7ziAjWOx8mxm6vvK1dsWP1SZoFONwNpi4w=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=

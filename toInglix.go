@@ -3,7 +3,7 @@ package main
 import (
 	byt "bytes"
 	fmt "fmt"
-	bal "github.com/bali-nebula/go-component-framework/v2/bali"
+	col "github.com/craterdog/go-collection-framework/v2"
 	osx "os"
 	sts "strings"
 	uni "unicode"
@@ -34,11 +34,7 @@ func main() {
 	var english = bytes
 
 	// Load in the dictionary.
-	bytes, err = osx.ReadFile(dictionaryFile)
-	if err != nil {
-		panic(err)
-	}
-	var dictionary = bal.ParseDocument(bytes).ExtractCatalog()
+	var dictionary = Dictionary(dictionaryFile)
 
 	// Translate the English text.
 	var buffer byt.Buffer
@@ -57,21 +53,16 @@ func main() {
 		// Extract the next word.
 		var next = index + byt.IndexFunc(english[index:], notInAlphabet)
 		var word = string(english[index:next])
-		var key = bal.Quote(`"` + sts.ToLower(word) + `"`)
 
 		// Translate the next word.
-		var translation string
-		var value = dictionary.GetValue(key)
-		if value != nil {
-			translation = value.ExtractQuote().AsString()
-		} else {
+		var translation = dictionary.GetValue(sts.ToLower(word))
+		if len(translation) == 0 {
 			// Prompt for a new translation.
 			fmt.Printf("Enter translation for %s: ", word)
 			fmt.Scanln(&translation)
 			if len(translation) > 0 {
 				// Add a new word to the dictionary.
-				value = bal.Component(`"` + sts.ToLower(translation) + `"`)
-				dictionary.SetValue(key, value)
+				dictionary.SetValue(sts.ToLower(word), sts.ToLower(translation))
 			} else {
 				// Keep the word untranslated.
 				translation = word
@@ -96,9 +87,47 @@ func main() {
 	}
 
 	// Write out the updated dictionary.
-	dictionary.SortValues()
-	bytes = bal.FormatDocument(bal.Component(dictionary))
-	err = osx.WriteFile(dictionaryFile, bytes, 0644)
+	dictionary.Save()
+}
+
+const (
+	EOL = "\n" // The POSIX end of line character.
+)
+
+func Dictionary(file string) *dictionary {
+	var v = col.Catalog[string, string]()
+	var bytes, err = osx.ReadFile(file)
+	if err != nil {
+		panic(err)
+	}
+	var lines = sts.Split(string(bytes), EOL)
+	lines = lines[1:len(lines)-2]  // Remove the brackets.
+	for _, line := range lines {
+		var strings = sts.Split(line, `"`)
+		v.SetValue(strings[1], strings[3])  // ----"key", "value"
+	}
+	return &dictionary{v, file}
+}
+
+type dictionary struct {
+	col.CatalogLike[string, string]
+	file string
+}
+
+func (v *dictionary) Save() {
+	v.SortValues()
+	var builder sts.Builder
+	builder.WriteString("[" + EOL)
+	var iterator = col.Iterator[col.Binding[string, string]](v)
+	for iterator.HasNext() {
+		var association = iterator.GetNext()
+		var key = association.GetKey()
+		var value = association.GetValue()
+		builder.WriteString(`    "` + key + `": "` + value + `"` + EOL)
+	}
+	builder.WriteString("]" + EOL)
+	var bytes = []byte(builder.String())
+	var err = osx.WriteFile(v.file, bytes, 0644)
 	if err != nil {
 		panic(err)
 	}
