@@ -66,8 +66,6 @@ affair
 affect
 afford
 afraid
-African
-African-American
 after
 afternoon
 again
@@ -85,7 +83,6 @@ ah
 ahead
 aid
 aide
-AIDS
 aim
 air
 aircraft
@@ -107,9 +104,7 @@ alter
 alternative
 although
 always
-AM
 amazing
-American
 among
 amount
 analysis
@@ -153,7 +148,6 @@ appropriate
 approval
 approve
 approximately
-Arab
 architect
 area
 argue
@@ -173,7 +167,6 @@ article
 artist
 artistic
 as
-Asian
 aside
 ask
 asleep
@@ -280,7 +273,6 @@ bet
 better
 between
 beyond
-Bible
 big
 bike
 bill
@@ -340,7 +332,6 @@ briefly
 bright
 brilliant
 bring
-British
 broad
 broken
 brother
@@ -375,7 +366,6 @@ camp
 campaign
 campus
 can
-Canadian
 cancer
 candidate
 cap
@@ -400,7 +390,7 @@ cast
 cat
 catch
 category
-Catholic
+catholic
 cause
 ceiling
 celebrate
@@ -410,7 +400,6 @@ cell
 center
 central
 century
-CEO
 ceremony
 certain
 certainly
@@ -444,14 +433,11 @@ chicken
 chief
 child
 childhood
-Chinese
 chip
 chocolate
 choice
 cholesterol
 choose
-Christian
-Christmas
 church
 cigarette
 circle
@@ -555,7 +541,7 @@ confirm
 conflict
 confront
 confusion
-Congress
+congress
 congressional
 connect
 connection
@@ -713,7 +699,7 @@ deliver
 delivery
 demand
 democracy
-Democrat
+democrat
 democratic
 demonstrate
 demonstration
@@ -798,7 +784,6 @@ diversity
 divide
 division
 divorce
-DNA
 do
 doctor
 document
@@ -901,7 +886,6 @@ engage
 engine
 engineer
 engineering
-English
 enhance
 enjoy
 enormous
@@ -934,7 +918,6 @@ estimate
 etc
 ethics
 ethnic
-European
 evaluate
 evaluation
 even
@@ -1114,7 +1097,6 @@ framework
 free
 freedom
 freeze
-French
 frequency
 frequent
 frequently
@@ -1163,7 +1145,6 @@ generation
 genetic
 gentleman
 gently
-German
 gesture
 get
 ghost
@@ -1181,7 +1162,7 @@ global
 glove
 go
 goal
-God
+god
 gold
 golden
 golf
@@ -1310,7 +1291,7 @@ hunting
 hurt
 husband
 hypothesis
-I
+i
 ice
 idea
 ideal
@@ -1360,7 +1341,6 @@ indeed
 independence
 independent
 index
-Indian
 indicate
 indication
 individual
@@ -1405,7 +1385,7 @@ interested
 interesting
 internal
 international
-Internet
+internet
 interpret
 interpretation
 intervention
@@ -1424,24 +1404,16 @@ invite
 involve
 involved
 involvement
-Iraqi
-Irish
 iron
-Islamic
 island
-Israeli
 issue
 it
-Italian
 item
 its
 itself
 jacket
 jail
-Japanese
 jet
-Jew
-Jewish
 job
 join
 joint
@@ -1491,7 +1463,6 @@ largely
 last
 late
 later
-Latin
 latter
 laugh
 launch
@@ -1648,7 +1619,6 @@ message
 metal
 meter
 method
-Mexican
 middle
 might
 military
@@ -1699,9 +1669,6 @@ mouth
 move
 movement
 movie
-Mr
-Mrs
-Ms
 much
 multiple
 murder
@@ -1710,7 +1677,6 @@ museum
 music
 musical
 musician
-Muslim
 must
 mutual
 my
@@ -1775,7 +1741,6 @@ notion
 novel
 now
 nowhere
-n't
 nuclear
 number
 numerous
@@ -1812,7 +1777,6 @@ oil
 ok
 okay
 old
-Olympic
 on
 once
 one
@@ -1873,7 +1837,6 @@ painter
 painting
 pair
 pale
-Palestinian
 palm
 pan
 panel
@@ -1904,7 +1867,6 @@ pattern
 pause
 pay
 payment
-PC
 peace
 peak
 peer
@@ -1970,7 +1932,6 @@ pleasure
 plenty
 plot
 plus
-PM
 pocket
 poem
 poet
@@ -2219,7 +2180,6 @@ reporter
 represent
 representation
 representative
-Republican
 reputation
 request
 require
@@ -2287,7 +2247,6 @@ run
 running
 rural
 rush
-Russian
 sacred
 sad
 safe
@@ -2348,7 +2307,6 @@ select
 selection
 self
 sell
-Senate
 senator
 send
 senior
@@ -2489,9 +2447,7 @@ soup
 source
 south
 southern
-Soviet
 space
-Spanish
 speak
 speaker
 special
@@ -2601,7 +2557,7 @@ support
 supporter
 suppose
 supposed
-Supreme
+supreme
 sure
 surely
 surface
@@ -2792,7 +2748,6 @@ try
 tube
 tunnel
 turn
-TV
 twelve
 twenty
 twice
@@ -2815,7 +2770,7 @@ uniform
 union
 unique
 unit
-United
+united
 universal
 universe
 university
