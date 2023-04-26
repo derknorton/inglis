@@ -1,5 +1,5 @@
 ## Inglıx
-Inglıx is a complete phonetic alphabet for spoken English. Each of its 33
+Inglıx is a complete phonetic alphabet for spoken English. Each of its 34
 characters has one unique sound making it easy to learn to read and write by
 someone who already understands spoken English. The goal is to allow school
 age children, ESL students, and special needs students that are on the Autism
