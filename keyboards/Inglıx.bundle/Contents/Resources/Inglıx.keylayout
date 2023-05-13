@@ -8,7 +8,7 @@
 
 -->
 <!--Last edited by Ukelele version 359 on 2023-05-13 at 11:20 (MDT)-->
-<keyboard group="126" id="-29116" name="Inglıx" maxout="2">
+<keyboard group="126" id="-29117" name="Inglıx" maxout="2">
     <layouts>
         <layout first="0" last="17" mapSet="16c" modifiers="f4"/>
     </layouts>
@@ -80,7 +80,7 @@
             <key code="35" output="p"/>
             <key code="36" output="&#x000D;"/>
             <key code="37" output="l"/>
-            <key code="38" output="ө"/>
+            <key code="38" output="θ"/>
             <key code="39" output="&#x0027;"/>
             <key code="40" output="k"/>
             <key code="41" output=";"/>
@@ -189,7 +189,7 @@
             <key code="35" output="P"/>
             <key code="36" output="&#x000D;"/>
             <key code="37" output="L"/>
-            <key code="38" output="Ө"/>
+            <key code="38" output="Θ"/>
             <key code="39" output="&#x0022;"/>
             <key code="40" output="K"/>
             <key code="41" output=":"/>
@@ -407,7 +407,7 @@
             <key code="35" output="π"/>
             <key code="36" output="&#x000D;"/>
             <key code="37" output="λ"/>
-            <key code="38" output="ӫ"/>
+            <key code="38" output="θ̈"/>
             <key code="39" output="ε"/>
             <key code="40" output="κ"/>
             <key code="41" output="α"/>
@@ -516,7 +516,7 @@
             <key code="35" output="∏"/>
             <key code="36" output="&#x000D;"/>
             <key code="37" output="Λ"/>
-            <key code="38" output="Ӫ"/>
+            <key code="38" output="Θ̈"/>
             <key code="39" output="Ε"/>
             <key code="40" output="Κ"/>
             <key code="41" output="Α"/>
