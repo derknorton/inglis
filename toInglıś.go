@@ -16,7 +16,7 @@ import (
 func main() {
 	// Validate the commandline arguments.
 	if len(osx.Args) < 3 {
-		panic("toInglix <english file> <inglix file> [learn]")
+		panic("toInglıś <english file> <ınglıś file> [learn]")
 	}
 	var learning = len(osx.Args) > 3
 
@@ -41,7 +41,7 @@ func main() {
 		// Find the next word.
 		var r, length = utf.DecodeRune(english[index:])
 		if notInAlphabet(r) {
-			// Append the non-letter rune to the Inglix text.
+			// Append the non-letter rune to the Inglıś text.
 			buffer.WriteRune(r)
 			index += length
 			continue
@@ -71,14 +71,14 @@ func main() {
 			translation = sts.Title(translation)
 		}
 
-		// Append the translated word to the Inglix text.
+		// Append the translated word to the Inglıś text.
 		buffer.WriteString(translation)
 		index = next
 	}
 
-	// Write out the Inglix text.
-	var inglix = buffer.Bytes()
-	err = osx.WriteFile(osx.Args[2], inglix, 0644)
+	// Write out the Inglıś text.
+	var ınglıś = buffer.Bytes()
+	err = osx.WriteFile(osx.Args[2], ınglıś, 0644)
 	if err != nil {
 		panic(err)
 	}

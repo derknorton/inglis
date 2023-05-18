@@ -1,4 +1,4 @@
-module github.com/derknorton/inglix/v2
+module github.com/derknorton/inglis/v2
 
 go 1.20
 

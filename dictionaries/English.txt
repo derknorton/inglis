@@ -1587,7 +1587,6 @@
     "info": "ınfó"
     "inform": "ınfórm"
     "information": "ınfórmáśun"
-    "inglix": "ingliś"
     "ingredient": "ıngrédyunt"
     "initial": "unıśul"
     "initially": "unıśulé"
